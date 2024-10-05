@@ -106,3 +106,37 @@ inputs.forEach(input => {
   const fieldName = input.getAttribute('name') || input.id; 
   setCustomValidation(input, fieldName);
 });
+
+const words = ["Gacorrr", "Trusted", "Aman 100%", "Murah",];
+    let wordIndex = 0;
+    let charIndex = 0;
+    const typingSpeed = 150;
+    const erasingSpeed = 100;
+    const delayBetweenWords = 2000;
+    
+    const textElement = document.querySelector('.text');
+    
+    function type() {
+        if (charIndex < words[wordIndex].length) {
+            textElement.textContent += words[wordIndex].charAt(charIndex);
+            charIndex++;
+            setTimeout(type, typingSpeed);
+        } else {
+            setTimeout(erase, delayBetweenWords);
+        }
+    }
+    
+    function erase() {
+        if (charIndex > 0) {
+            textElement.textContent = words[wordIndex].substring(0, charIndex - 1);
+            charIndex--;
+            setTimeout(erase, erasingSpeed);
+        } else {
+            wordIndex = (wordIndex + 1) % words.length;
+            setTimeout(type, typingSpeed);
+        }
+    }
+    
+    document.addEventListener("DOMContentLoaded", function () {
+        setTimeout(type, typingSpeed);
+    });
