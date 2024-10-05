@@ -32,48 +32,25 @@ const scriptURL = 'https://script.google.com/macros/s/AKfycbwaiCj5m3_F43yto8ClqK
 const form = document.forms['form-vc-receh48'];
 const loading = document.getElementById('loading');
 const output = document.getElementById('output');
-const submitButton = form.querySelector('button[type="submit"]');
+
+// Tambahkan variabel untuk mengontrol status form
+let formIsOpen = false;  // Set ke 'false' untuk menutup form
 
 form.addEventListener('submit', e => {
-  e.preventDefault(); 
+  e.preventDefault();
 
+  form.reset();
 
-  submitButton.style.display = 'none'; 
-  loading.style.display = 'block'; 
-  output.style.display = 'none'; 
-
-  const nama = document.getElementById('nama').value.trim();
-
-  // Send data to Google Apps Script
-  fetch(scriptURL, { method: 'POST', body: new FormData(form) })
-    .then(response => {
-      loading.style.display = 'none'; 
-      output.style.display = 'block'; 
-      output.textContent = 'Data Sudah Terkirim 🙏'; 
-      
-      form.reset();
-
-      Swal.fire({
-        icon: 'success',
-        title: 'Sukses!',
-        text: `Terimakasih Ka ${nama}, Data Sudah Terkirim 🙏`,
-        confirmButtonText: 'OK'
-      });
-    })
-    .catch(error => {
-      loading.style.display = 'none'; 
-      output.style.display = 'block'; 
-      output.textContent = 'Terjadi kesalahan: ' + error.message; 
-
-      Swal.fire({
-        icon: 'error',
-        title: 'Error!',
-        text: 'Terjadi kesalahan saat mengirim data!',
-        confirmButtonText: 'OK'
-      });
-
-      submitButton.style.display = 'block';
+  // Periksa apakah form sedang terbuka
+  if (!formIsOpen) {
+    Swal.fire({
+      icon: 'error',
+      title: 'Tutup',
+      text: 'Mohon Maaf Sudah Full Slot',
+      confirmButtonText: 'OK'
     });
+    return;
+  }
 });
 
 // eye password
