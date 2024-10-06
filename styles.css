@@ -220,23 +220,19 @@ section{
   color: rgb(255, 225, 0);
 }
 
-.animated-text .blinking-cursor::after {
-  content: "";
-  position: absolute;
-  width: 3px;
-  height: 100%;
+.cursor {
+  display: inline-block;
+  width: 4px;
+  height: 1.4em;
   background-color: rgb(255, 225, 0);
-  right: 0;
-  animation: blink 0.7s infinite;
+  vertical-align: bottom;
+  animation: blink 1s infinite;
 }
 
 @keyframes blink {
-  0%, 50% {
-      opacity: 1;
-  }
-  51%, 100% {
-      opacity: 0;
-  }
+  0% { opacity: 1; }
+  50% { opacity: 0; }
+  100% { opacity: 1; }
 }
 
 
