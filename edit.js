@@ -46,7 +46,7 @@ form.addEventListener('submit', e => {
     Swal.fire({
       icon: 'error',
       title: 'Tutup',
-      text: 'Mohon Maaf Sudah Full Slot',
+      text: 'Sabar bjir belum ada jadwalnya',
       confirmButtonText: 'OK'
     });
     return;
