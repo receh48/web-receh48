@@ -28,29 +28,52 @@ navLinks.forEach(link => {
 
 
 // form pemesanan
-const scriptURL = 'https://script.google.com/macros/s/AKfycbwaiCj5m3_F43yto8ClqK14YtGpXJWImR6yfgWzNQTZkkGkck4HOrFeyJBwUt0p8vyMUw/exec';
+const scriptURL = 'https://script.google.com/macros/s/AKfycbwvZHtKJ_GUtujh0jJguchc-i8sEORSNLyz4jB3MJ4KI2gnp4RDjwti2qzB9hJQdY8Zow/exec';
 const form = document.forms['form-vc-receh48'];
 const loading = document.getElementById('loading');
 const output = document.getElementById('output');
-
-// Tambahkan variabel untuk mengontrol status form
-let formIsOpen = false;  // Set ke 'false' untuk menutup form
+const submitButton = form.querySelector('button[type="submit"]');
 
 form.addEventListener('submit', e => {
-  e.preventDefault();
+  e.preventDefault(); 
 
-  form.reset();
 
-  // Periksa apakah form sedang terbuka
-  if (!formIsOpen) {
-    Swal.fire({
-      icon: 'error',
-      title: 'Tutup',
-      text: 'Sabar bjir belum ada jadwalnya',
-      confirmButtonText: 'OK'
+  submitButton.style.display = 'none'; 
+  loading.style.display = 'block'; 
+  output.style.display = 'none'; 
+
+  const nama = document.getElementById('nama').value.trim();
+
+  // Send data to Google Apps Script
+  fetch(scriptURL, { method: 'POST', body: new FormData(form) })
+    .then(response => {
+      loading.style.display = 'none'; 
+      output.style.display = 'block'; 
+      output.textContent = 'Data Sudah Terkirim 🙏'; 
+      
+      form.reset();
+
+      Swal.fire({
+        icon: 'success',
+        title: 'Sukses!',
+        text: `Terimakasih Ka ${nama}, Data Sudah Terkirim 🙏`,
+        confirmButtonText: 'OK'
+      });
+    })
+    .catch(error => {
+      loading.style.display = 'none'; 
+      output.style.display = 'block'; 
+      output.textContent = 'Terjadi kesalahan: ' + error.message; 
+
+      Swal.fire({
+        icon: 'error',
+        title: 'Error!',
+        text: 'Terjadi kesalahan saat mengirim data!',
+        confirmButtonText: 'OK'
+      });
+
+      submitButton.style.display = 'block';
     });
-    return;
-  }
 });
 
 // eye password
@@ -81,10 +104,12 @@ const inputs = [
   document.getElementById('nama'),
   document.getElementById('username'),
   document.getElementById('gmail'),
-  document.getElementById('password'),
-  document.getElementById('tipe'),
-  document.getElementById('sesi'),
-  document.getElementById('cadangan')
+  document.getElementById('nohp'),
+  document.getElementById('lahir'),
+  document.getElementById('kelamin'),
+  document.getElementById('ktp'),
+  document.getElementById('cat'),
+  document.getElementById('pembayaran')
 ];
 
 function setCustomValidation(input, fieldName) {
