@@ -59,8 +59,8 @@ form.addEventListener('submit', e => {
       Swal.fire({
         title: 'Sukses!',
         text: `Terimakasih Ka ${nama}, Data Sudah Terkirim 🙏`,
-        imageUrl: 'img/icel-ty.jpg',
-        imageWidth: 120,
+        imageUrl: 'img/icel-ty.gif',
+        imageWidth: 150,
         confirmButtonText: 'OK'
       }); 
     })
