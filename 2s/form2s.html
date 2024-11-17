@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+    
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+    <link rel="stylesheet" href="styles2s.css">
+    <script src="https://unpkg.com/scrollreveal"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
+    <link rel="icon" href="img/receh48.jpg">
+    <title>Form Joki 2s Receh48</title>
+</head>
+<body>
+
+  <div class="layout">
+    <div class="reminder">
+      <h1>Joki 2-Shoot JKT48 By @receh48</h1><br><br>
+      <p>NOTE :</p>
+      <p>1. Pembayaran dilakukan setelah tiket berhasil didapatkan.</p>
+      <p>2. Jangan lupa untuk mengisi saldo JKT48 Points sebelum dijoki.</p>
+      <p>3. Pastikan Akun kalian bisa dihubungi untuk konfirmasi dari tim kami.</p>
+      <p>4. Pihak kami tidak mencuri/mempergunakan kode vote di akun kalian.</p>
+      <p>5. Apabila terjadi kesalahan menulis data bisa langsung dm X kami.</p>
+      <p>6. Untuk jadwal sesinya nanti pihak kami yang hubungi kalian setelah timetable muncul.</p>
+      <br>
+      <h2>OFC TERLEBIH DAHULU!!!.</h2>
+      
+      <a href="https://docs.google.com/spreadsheets/d/1Qr6hR4_GL5ju8WE9nV8OnNR_39dmnDGKCl3roktFLwY/edit?usp=sharing" target="_blank">
+        <img src="img/pl-2s.png" alt="Pricelist Joki 2-Shoot">
+      </a>          
+    </div>
+  
+    <div class="form-container">
+      <h2>Form Pemesanan Joki 2-Shoot JKT48</h2>
+      <form name="form-2s-receh48">
+        
+        <div class="input-container">
+          <input type="text" id="nama" name="nama" required>
+          <label for="nama">Nama</label>
+        </div>
+
+        <div class="input-container">
+          <input type="text" id="username" name="username" required>
+          <label for="username">Username X/ID Line/No Whatsapp</label>
+        </div>
+
+        <div class="input-container">
+          <input type="email" id="gmail" name="gmail" required>
+          <label for="gmail">Gmail JKT48</label>
+        </div>
+
+        <div class="input-container password-wrapper">
+          <input type="password" id="password" name="password" required>
+          <label for="password">Password JKT48</label>
+          <img src="img/eye-close.png" id="eyeicon">
+        </div>
+        
+        <p>Gunakan tanda "," untuk mengisi lebih dari 1 member.</p>
+        <div class="input-container">
+          <input type="text" id="member" name="member" required>
+          <label for="sesi">Member</label>
+        </div>
+
+        <div class="input-container">
+          <input type="text" id="cadangan" name="cadangan" required>
+          <label for="cadangan">Cadangan</label>
+        </div>
+
+        <button type="submit">Kirim</button>
+        <div id="loading" class="loading">Tunggu Sebentar...</div>
+          <p id="output"></p>
+      </form>
+        
+    </div>
+  </div>
+
+    <script src="2s.js"></script>
+</body>
+</html>

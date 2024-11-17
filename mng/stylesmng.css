@@ -1,0 +1,303 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@100;200;300;400;500;600&display=swap');
+
+*{
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  text-decoration: none;
+  border: none;
+  outline: none;
+  font-family: 'Poppins', sans-serif;
+}
+
+html{
+  font-size: 62.5%;
+  scroll-behavior: smooth;
+}
+
+body{
+  width: 100%;
+  height: 100vh;
+  overflow-x: hidden;
+  background-color: #021526;
+  color: white;
+}
+
+section{
+  min-height: 100vh;
+  padding: 5rem 8% 5rem;
+}
+
+.layout {
+  display: flex;
+  min-height: 100vh;
+  align-items: stretch;
+  background-color: #021526;
+  padding: 0 7rem; 
+  padding-top: 2rem;
+}
+  
+.reminder {
+  flex: 1;
+  margin-top: 3rem;
+  padding: 0 2rem;
+  background-color: #021526;
+  color: white;
+  display: flex;
+  flex-direction: column;
+}
+
+  .reminder h1{
+    text-align: center;
+    font-size: 2.1rem;
+  }
+
+  .reminder p{
+    font-size: 1.4rem;
+    text-align: justify;
+  }
+  
+  /* Gambar di reminder */
+.reminder img {
+    width: 100vh;
+    margin-top: 5rem;
+    border-radius: 10px;
+    object-fit: cover;
+    cursor: pointer; /* Tunjukkan bahwa gambar bisa di-klik */
+}  
+  
+/* Form Pemesanan */
+.form-container {
+  background-color: transparent;
+  border: 4px solid rgb(255, 225, 0);
+  padding: 30px;
+  border-radius: 15px;
+  box-shadow: 0 8px 10px rgba(0, 0, 0, 0.15);
+  width: 100%;
+  max-width: 450px;
+  margin: 2rem; /* Space around the form container */
+}
+
+.form-container h2 {
+  text-align: center;
+  margin-bottom: 3rem;
+  font-size: 2rem;
+}
+
+/* Input Container Styles */
+.input-container {
+  position: relative;
+  margin-bottom: 25px;
+}
+
+.input-container input {
+  width: 100%;
+  height: 50px;
+  padding: 5px 15px;
+  font-size: 1.3rem;
+  border: 2px solid rgb(255, 225, 0);
+  border-radius: 15px;
+  outline: none;
+  transition: all 0.3s ease;
+  background: transparent; 
+  color: #fff; /* Make the input text white */
+  z-index: 1; 
+}
+
+/* Input Focus & Valid State */
+.input-container input:focus,
+.input-container input:valid {
+  border-color: rgb(255, 225, 0);
+  box-shadow: 0 0 10px rgba(65, 88, 208, 0.2);
+  color: #fff; /* Keep the text color white when focused or valid */
+}
+
+.form-container p {
+  font-size: 1rem;
+  padding: 0 0 10px;
+}
+
+/* Floating Label Styles */
+.input-container label {
+  position: absolute;
+  top: 50%;
+  left: 20px;
+  color: #c8c4c4;
+  font-size: 1.3rem;
+  pointer-events: none;
+  transform: translateY(-50%);
+  transition: all 0.5s ease;
+  background-color: transparent; /* Match form container background */
+  padding: 0 3px;
+  z-index: 2; /* Ensure label floats above the input */
+}
+
+/* Label on Focus and Input Filled */
+.input-container input:focus ~ label,
+.input-container input:valid ~ label {
+  top: 0;
+  font-size: 1.3rem;
+  color: rgb(255, 225, 0);
+  padding: 0 7px;
+  transform: translateY(-50%);
+  background-color: #021526; /* Maintain label background to cut through input border */
+}
+
+.password-wrapper img {
+  position: absolute;
+  right: 20px;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 20px;
+  height: 17px;
+  cursor: pointer; /* Add a pointer cursor to indicate it's clickable */
+}
+
+button {
+  width: 100%;
+  padding: 10px 30px;
+  background-color: rgb(255, 225, 0);
+  color: #021526;
+  border: none;
+  border-radius: 10px;
+  cursor: pointer;
+  font-size: 1.4rem;
+  font-weight: 700;
+  transition: background-color 0.3s ease;
+}
+
+button:hover {
+  background-color: #218838;
+}
+
+.loading {
+  display: none; /* Hidden by default */
+  width: fit-content;
+  font-weight: bold;
+  font-family: sans-serif;
+  font-size: 1.6rem; /* Adjust font size */
+  text-align: center;
+  padding-bottom: 8px;
+  background: linear-gradient(currentColor 0 0) 0 100%/0% 3px no-repeat;
+  animation: l2 2s linear infinite;
+  color: #ffffff;
+  margin: 0 auto; /* Center horizontally */
+}
+
+@keyframes l2 {
+  to {
+    background-size: 100% 3px;
+  }
+}
+
+#output {
+  display: none;
+  margin-top: 20px;
+  font-size: 1.5rem;
+  font-weight: 800;
+  color: #ffffff;
+  text-align: center;
+  font-weight: bold;
+}
+
+@media (max-width: 995px) {
+  /* Atur ukuran font */
+  html {
+    font-size: 58%;
+    padding: 4rem 5%;
+  }
+
+  /* Header dan Navbar */
+  header {
+    flex-direction: column;
+    align-items: flex-start;
+    padding: 10px 5%;
+  }
+
+  nav {
+    flex-direction: column;
+    width: 100%;
+    display: none;
+    gap: 15px;
+  }
+
+  nav.open {
+    display: flex;
+  }
+
+  .menu-toggle {
+    display: block;
+    margin-left: auto;
+  }
+
+  .dropdown-menu {
+    position: static;
+    background-color: #021526;
+    box-shadow: none;
+    width: 100%;
+    padding: 0;
+  }
+
+  .dropdown-menu a {
+    padding: 10px;
+    text-align: left;
+  }
+
+  /* Section Layout */
+  section {
+    padding: 4rem 5%;
+  }
+
+  .layout {
+    flex-direction: column;
+    padding: 0 2rem;
+  }
+
+  .reminder {
+    margin-top: 2rem;
+    padding: 0;
+  }
+
+  .reminder img {
+    width: 100%;
+    margin-top: 2rem;
+    height: auto;
+  }
+
+  /* Form Container */
+  .form-container {
+    padding: 20px;
+    width: 100%;
+    margin: 2rem auto;
+  }
+
+  .form-container h2 {
+    font-size: 1.8rem;
+  }
+
+  .input-container input {
+    height: 45px;
+    font-size: 1.2rem;
+  }
+
+  .input-container label {
+    font-size: 1.2rem;
+    left: 15px;
+  }
+
+  /* Button */
+  button {
+    padding: 8px 20px;
+    font-size: 1.2rem;
+  }
+
+  /* Loading & Output */
+  .loading {
+    font-size: 1.4rem;
+  }
+
+  #output {
+    font-size: 1.4rem;
+    margin-top: 15px;
+  }
+}
