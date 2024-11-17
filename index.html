@@ -16,13 +16,24 @@
   <header>
     <a href="#home" class="logo">Receh48</a>
     <div class="menu-toggle" onclick="toggleMenu()">&#9776;</div>
-    <nav>
+    <nav id="navbar">
         <a href="#home">Beranda</a>
-        <a href="#form">Form Pemesanan</a>
+        <a href="#timetable">TimeTable</a>
         <a href="#testi">Testimoni</a>
-        <a href="https://receh48.github.io/cekoshi/">Cek Oshi</a>
+        <a href="https://receh48.github.io/cekoshi/" target="_blank">Cek Oshi</a>
+        
+        <!-- Form Pemesanan Dropdown -->
+        <div class="nav-link dropdown">
+            <a href="#">Form Pemesanan <i class="fas fa-chevron-down"></i></a>
+            <div class="dropdown-menu">
+                <a href="2s/form2s.html" target="_blank" class="dropdown-item">Form Joki 2S</a>
+                <a href="mng/formmng.html" target="_blank" class="dropdown-item">Form Joki MNG</a>
+                <a href="vc/formvc.html" target="_blank" class="dropdown-item">Form Joki VC</a>
+            </div>
+        </div>
     </nav>
 </header>
+
 
     <section id="home" class="home">
         <div class="home-img">
@@ -30,8 +41,7 @@
         </div>
         <div class="home-content">
             <h1>Hi, <span>Welcome</span></h1>
-            <h3 class="animated-text">Receh48 <span class="text"></span>
-              <span class="cursor"></span></h3>
+            <h3 class="animated-text">Receh48 <span class="text"></span> <span class="cursor"></span></h3>
             <p>Specialist Joki Tiket VideoCall, Meet n Greet, 2-Shot JKT48</p>
             <p style="color: rgb(255, 225, 0);">#MasihMasukBudget</p>
             <div class="social-icons">
@@ -42,128 +52,102 @@
         </div>
     </section>
 
-    <section id="form" class="layout">
-        <div class="reminder">
-          <h1>Joki Video Call JKT48 By @receh48</h1><br><br>
-          <p>NOTE :</p>
-          <p>1. Pembayaran dilakukan setelah tiket berhasil didapatkan.</p>
-          <p>2. Jangan lupa untuk mengisi saldo JKT48 Points sebelum dijoki.</p>
-          <p>3. Pastikan Akun kalian bisa di dm untuk konfirmasi dari tim kami.</p>
-          <p>4. Pihak kami tidak mencuri/mempergunakan kode vote di akun kalian.</p>
-          <p>5. Apabila terjadi kesalahan menulis data bisa langsung dm X kami.</p>
-      
-          <a href="https://docs.google.com/spreadsheets/d/1gT_Tz2jdypeWbplGe1nrHScAU62OQ8EajdIBCPdgAXU/edit?usp=sharing" target="_blank">
-            <img src="img/pl vc.png" alt="Pricelist VC">
-          </a>          
+    <section id="timetable" class="timetable">
+        <h2>TimeTable</h2>
+        <div class="timetable-img">
+          <div class="img-container">
+            <img src="img/vc-novem (1).jpg" alt="Image 1" data-large="img/vc-novem (1).jpg">
+          </div>
+          <div class="img-container">
+            <img src="img/vc-novem (2).jpg" alt="Image 2" data-large="img/vc-novem (2).jpg">
+          </div>
+          <div class="img-container">
+            <img src="img/vc-novem (3).jpg" alt="Image 3" data-large="img/vc-novem (3).jpg">
+          </div>
+          <div class="img-container">
+            <img src="img/vc-novem (4).jpg" alt="Image 4" data-large="img/vc-novem (4).jpg">
+          </div>
+          <div class="img-container">
+            <img src="img/vc-novem (5).jpg" alt="Image 5" data-large="img/vc-novem (5).jpg">
+          </div>
+          <div class="img-container">
+            <img src="img/vc-novem (6).jpg" alt="Image 6" data-large="img/vc-novem (6).jpg">
+          </div>
+          <div class="img-container">
+            <img src="img/cs.jpg" alt="Image 6" data-large="img/cs.jpg">
+          </div>
+          <div class="img-container">
+            <img src="img/cs.jpg" alt="Image 6" data-large="img/cs.jpg">
+          </div>
         </div>
       
-        <div class="form-container">
-          <h2>Form Pemesanan Joki VC JKT48</h2>
-          <form name="form-vc-receh48">
-            
-            <div class="input-container">
-              <input type="text" id="nama" name="nama" required>
-              <label for="nama">Nama</label>
-            </div>
-
-            <div class="input-container">
-              <input type="text" id="username" name="username" required>
-              <label for="username">Username X atau ID Line</label>
-            </div>
-
-            <div class="input-container">
-              <input type="email" id="gmail" name="gmail" required>
-              <label for="gmail">Gmail JKT48</label>
-            </div>
-
-            <div class="input-container password-wrapper">
-              <input type="password" id="password" name="password" required>
-              <label for="password">Password JKT48</label>
-              <img src="eye-close.png" id="eyeicon">
-            </div>
-
-            <div class="input-container">
-              <input type="text" id="tipe" name="tipe" required>
-              <label for="tipe">Tipe Akun</label>
-            </div>
-            
-            <p>Gunakan tanda "," untuk mengisi lebih dari 1 member.</p>
-            <div class="input-container">
-              <input type="text" id="sesi" name="sesi" required>
-              <label for="sesi">[Tanggal - Member - Sesi - Jumlah Tiket]</label>
-            </div>
-
-            <div class="input-container">
-              <input type="text" id="cadangan" name="cadangan" required>
-              <label for="cadangan">Cadangan</label>
-            </div>
-
-            <button type="submit">Kirim</button>
-            <div id="loading" class="loading">Tunggu Sebentar...</div>
-              <p id="output"></p>
-          </form>
-            
+        <!-- Lightbox Modal -->
+        <div id="lightbox" class="lightbox">
+          <span class="close">&times;</span>
+          <img class="lightbox-img" src="" alt="">
         </div>
       </section>
+      
       
       <section id="testi" class="testi">
         <h2>Testimoni</h2>
         <div class="testi-img">
             <div class="img-container">
-                <img src="img/Screenshot (9).png" alt="Image 1" data-large="img/ribka home.jpg">
+              <img src="img/Screenshot (9).png" alt="Image 1" data-large="img/Screenshot (9).png">
             </div>
             <div class="img-container">
-                <img src="img/Screenshot (34).png" alt="Image 2" data-large="img/ribka home.jpg">
+              <img src="img/Screenshot (34).png" alt="Image 2" data-large="img/Screenshot (34).png">
             </div>
             <div class="img-container">
-                <img src="img/Screenshot (60).png" alt="Image 3" data-large="img/ribka home.jpg">
+              <img src="img/Screenshot (60).png" alt="Image 3" data-large="img/Screenshot (60).png">
             </div>
             <div class="img-container">
-                <img src="img/Screenshot (160).png" alt="Image 4" data-large="img/ribka home.jpg">
+              <img src="img/Screenshot (160).png" alt="Image 4" data-large="img/Screenshot (160).png">
             </div>
             <div class="img-container">
-                <img src="img/testi5.jpg" alt="Image 5" data-large="img/ribka home.jpg">
+              <img src="img/testi5.jpg" alt="Image 5" data-large="img/testi5.jpg">
             </div>
             <div class="img-container">
-                <img src="img/testi6.jpg" alt="Image 6" data-large="img/ribka home.jpg">
+              <img src="img/testi6.jpg" alt="Image 6" data-large="img/testi6.jpg">
             </div>
             <div class="img-container">
-                <img src="img/testi7.jpg" alt="Image 7" data-large="img/ribka home.jpg">
+              <img src="img/testi7.jpg" alt="Image 7" data-large="img/testi7.jpg">
             </div>
             <div class="img-container">
-                <img src="img/testi8.jpg" alt="Image 8" data-large="img/ribka home.jpg">
+              <img src="img/testi8.jpg" alt="Image 8" data-large="img/testi8.jpg">
             </div>
-        </div>
+          </div>
+          
 
         <a href="https://x.com/receh_48/status/1818337639571112436" target="_blank">
           <h3>#KATAMEREKA</h3>
         </a>  
         <div class="kata-img">
-          <div class="img-container">
-              <img src="img/IMG_2508.jpg" alt="Image 1" data-large="img/ribka home.jpg">
+            <div class="img-container">
+              <img src="img/IMG_2508.jpg" alt="Image 1" data-large="img/IMG_2508.jpg">
+            </div>
+            <div class="img-container">
+              <img src="img/IMG_2509.jpg" alt="Image 2" data-large="img/IMG_2509.jpg">
+            </div>
+            <div class="img-container">
+              <img src="img/IMG_2510.jpg" alt="Image 3" data-large="img/IMG_2510.jpg">
+            </div>
+            <div class="img-container">
+              <img src="img/IMG_2511.jpg" alt="Image 4" data-large="img/IMG_2511.jpg">
+            </div>
+            <div class="img-container">
+              <img src="img/IMG_2512.jpg" alt="Image 5" data-large="img/IMG_2512.jpg">
+            </div>
+            <div class="img-container">
+              <img src="img/IMG_2513.jpg" alt="Image 6" data-large="img/IMG_2513.jpg">
+            </div>
+            <div class="img-container">
+              <img src="img/IMG_2514.jpeg" alt="Image 7" data-large="img/IMG_2514.jpeg">
+            </div>
+            <div class="img-container">
+              <img src="img/IMG_2515.jpeg" alt="Image 8" data-large="img/IMG_2515.jpeg">
+            </div>
           </div>
-          <div class="img-container">
-              <img src="img/IMG_2509.jpg" alt="Image 2" data-large="img/ribka home.jpg">
-          </div>
-          <div class="img-container">
-              <img src="img/IMG_2510.jpg" alt="Image 3" data-large="img/ribka home.jpg">
-          </div>
-          <div class="img-container">
-              <img src="img/IMG_2511.jpg" alt="Image 4" data-large="img/ribka home.jpg">
-          </div>
-          <div class="img-container">
-              <img src="img/IMG_2512.jpg" alt="Image 5" data-large="img/ribka home.jpg">
-          </div>
-          <div class="img-container">
-              <img src="img/IMG_2513.jpg" alt="Image 6" data-large="img/ribka home.jpg">
-          </div>
-          <div class="img-container">
-              <img src="img/IMG_2514.jpeg" alt="Image 7" data-large="img/ribka home.jpg">
-          </div>
-          <div class="img-container">
-              <img src="img/IMG_2515.jpeg" alt="Image 8" data-large="img/ribka home.jpg">
-          </div>
-        </div>
 
         <h1>Untuk Lihat Lebih Banyak Bisa Kunjungi Akun X receh48</h1>
       </section>
