@@ -27,70 +27,6 @@ navLinks.forEach(link => {
 });
 
 
-// form pemesanan
-const scriptURL = 'https://script.google.com/macros/s/AKfycbwvZHtKJ_GUtujh0jJguchc-i8sEORSNLyz4jB3MJ4KI2gnp4RDjwti2qzB9hJQdY8Zow/exec';
-const form = document.forms['form-vc-receh48'];
-const loading = document.getElementById('loading');
-const output = document.getElementById('output');
-const submitButton = form.querySelector('button[type="submit"]');
-
-form.addEventListener('submit', e => {
-  e.preventDefault(); 
-
-
-  submitButton.style.display = 'none'; 
-  loading.style.display = 'block'; 
-  output.style.display = 'none'; 
-
-  const nama = document.getElementById('nama').value.trim();
-
-  // Send data to Google Apps Script
-  fetch(scriptURL, { method: 'POST', body: new FormData(form) })
-    .then(response => {
-      loading.style.display = 'none'; 
-      output.style.display = 'block'; 
-      output.textContent = 'Data Sudah Terkirim 🙏'; 
-      
-      form.reset();
-
-      Swal.fire({
-        icon: 'success',
-        title: 'Sukses!',
-        text: `Terimakasih Ka ${nama}, Data Sudah Terkirim 🙏`,
-        confirmButtonText: 'OK'
-      });
-    })
-    .catch(error => {
-      loading.style.display = 'none'; 
-      output.style.display = 'block'; 
-      output.textContent = 'Terjadi kesalahan: ' + error.message; 
-
-      Swal.fire({
-        icon: 'error',
-        title: 'Error!',
-        text: 'Terjadi kesalahan saat mengirim data!',
-        confirmButtonText: 'OK'
-      });
-
-      submitButton.style.display = 'block';
-    });
-});
-
-// eye password
-let eyeicon = document.getElementById("eyeicon");
-let password = document.getElementById("password");
-
-eyeicon.onclick = function () {
-  if (password.type == "password") {
-    password.type = "text";
-    eyeicon.src = "eye-open.png";
-  } else {
-    password.type = "password";
-    eyeicon.src = "eye-close.png";
-  }
-}
-
-
 // Animasi Masuk Section Home/Beranda
 ScrollReveal().reveal('.home-content h1', { delay: 400, origin: 'top', distance: '100px' });
 ScrollReveal().reveal('.home-content h3', { delay: 600, origin: 'bottom', distance: '100px' });
@@ -98,39 +34,6 @@ ScrollReveal().reveal('.home-content p', { delay: 900, origin: 'left', distance:
 ScrollReveal().reveal('.social-icons p', { delay: 900, origin: 'right', distance: '100px' });
 ScrollReveal().reveal('.home-img', { delay: 700, origin: 'left', distance: '200px' });
 
-
-// Field required
-const inputs = [
-  document.getElementById('nama'),
-  document.getElementById('username'),
-  document.getElementById('gmail'),
-  document.getElementById('nohp'),
-  document.getElementById('lahir'),
-  document.getElementById('kelamin'),
-  document.getElementById('ktp'),
-  document.getElementById('cat'),
-  document.getElementById('pembayaran')
-];
-
-function setCustomValidation(input, fieldName) {
-  input.addEventListener('input', function() {
-      input.setCustomValidity('');
-      input.checkValidity();
-  });
-
-  input.addEventListener('invalid', function() {
-      if (input.value === '') {
-          input.setCustomValidity('Isi dulu ' + fieldName + ' Lu Bjirrr');
-      } else {
-          input.setCustomValidity('Format ' + fieldName + ' Salah Kocak');
-      }
-  });
-}
-
-inputs.forEach(input => {
-  const fieldName = input.getAttribute('name') || input.id; 
-  setCustomValidation(input, fieldName);
-});
 
 const words = ["Gacorrr", "Trusted", "Aman 100%", "Murah",];
     let wordIndex = 0;
@@ -165,3 +68,50 @@ const words = ["Gacorrr", "Trusted", "Aman 100%", "Murah",];
     document.addEventListener("DOMContentLoaded", function () {
         setTimeout(type, typingSpeed);
     });
+
+    document.addEventListener('DOMContentLoaded', function () {
+      const dropdownToggle = document.querySelector('.dropdown-toggle');
+      const dropdownMenu = document.querySelector('.dropdown-menu');
+    
+      dropdownToggle.addEventListener('click', function (e) {
+        e.preventDefault();
+        dropdownMenu.classList.toggle('show');
+      });
+    
+      // Klik di luar dropdown untuk menutupnya
+      document.addEventListener('click', function (e) {
+        if (!dropdownToggle.contains(e.target) && !dropdownMenu.contains(e.target)) {
+          dropdownMenu.classList.remove('show');
+        }
+      });
+    });
+    
+
+
+    document.addEventListener('DOMContentLoaded', function () {
+      const lightbox = document.getElementById('lightbox');
+      const lightboxImg = document.querySelector('.lightbox-img');
+      const closeBtn = document.querySelector('.close');
+      const images = document.querySelectorAll('.img-container img');
+    
+      images.forEach(img => {
+        img.addEventListener('click', function () {
+          const largeImgSrc = this.getAttribute('data-large');
+          lightboxImg.src = largeImgSrc;
+          lightbox.classList.add('active');
+        });
+      });
+    
+      closeBtn.addEventListener('click', function () {
+        lightbox.classList.remove('active');
+      });
+    
+      // Tutup lightbox jika pengguna mengklik di luar gambar
+      lightbox.addEventListener('click', function (e) {
+        if (e.target === lightbox) {
+          lightbox.classList.remove('active');
+        }
+      });
+    });
+    
+    
