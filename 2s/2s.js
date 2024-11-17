@@ -62,11 +62,6 @@ form.addEventListener('submit', e => {
     return; // Hentikan pengiriman form
   }
 
-  // Lanjutkan pengiriman form jika tidak ada pembatasan
-  form.submit();
-});
-
-
   submitButton.style.display = 'none'; 
   loading.style.display = 'block'; 
   output.style.display = 'none'; 
