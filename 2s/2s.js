@@ -37,9 +37,24 @@ const loading = document.getElementById('loading');
 const output = document.getElementById('output');
 const submitButton = form.querySelector('button[type="submit"]');
 
+const restrictedMembers = ['Marsha Lenathea', 'Marsha', 'Maeng', 'ci gre', 'Gracia', 'Adeline Wijaya', 'Freya', 'Freya Jayawardana', 'Christy', 'Angelina Christy', 'Shania Gracia', 'Erine', 'Oline', 'Oline Manuel', 'Catherina Vallencia', 'Delynn', 'Michie', 'Michelle Alexandra']; // Daftar nama member yang dibatasi
+
 form.addEventListener('submit', e => {
   e.preventDefault(); 
 
+  const memberName = document.getElementById('member').value.trim();
+
+  // Periksa apakah nama member termasuk dalam daftar yang dibatasi
+  if (restrictedMembers.includes(memberName)) {
+    Swal.fire({
+      icon: 'error',
+      title: 'Slot Penuh!',
+      text: `Maaf, slot untuk ${memberName} sudah penuh.`,
+      confirmButtonText: 'OK'
+    });
+
+    return; // Hentikan pengiriman form
+  }
 
   submitButton.style.display = 'none'; 
   loading.style.display = 'block'; 
@@ -47,7 +62,7 @@ form.addEventListener('submit', e => {
 
   const nama = document.getElementById('nama').value.trim();
 
-  // Send data to Google Apps Script
+  // Kirim data ke Google Apps Script
   fetch(scriptURL, { method: 'POST', body: new FormData(form) })
     .then(response => {
       loading.style.display = 'none'; 
