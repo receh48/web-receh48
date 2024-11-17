@@ -42,7 +42,11 @@ const restrictedMembers = ['Marsha Lenathea', 'Marsha', 'Gracia', 'Adeline Wijay
 form.addEventListener('submit', e => {
   e.preventDefault();
 
-  const memberName = document.getElementById('member').value.trim().toLowerCase();
+  // Ambil input pengguna dan bersihkan dari karakter yang tidak diinginkan
+  let memberName = document.getElementById('member').value.trim();
+
+  // Hapus tanda kutip, karakter khusus, dan spasi ekstra
+  memberName = memberName.replace(/['"`~!@#$%^&*()_+={}\[\]:;<>?,./\\|]/g, '').toLowerCase();
 
   // Periksa apakah nama member termasuk dalam daftar yang dibatasi (case insensitive)
   const isRestricted = restrictedMembers.some(name => name.toLowerCase() === memberName);
@@ -61,6 +65,7 @@ form.addEventListener('submit', e => {
   // Lanjutkan pengiriman form jika tidak ada pembatasan
   form.submit();
 });
+
 
   submitButton.style.display = 'none'; 
   loading.style.display = 'block'; 
