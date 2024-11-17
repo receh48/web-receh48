@@ -75,7 +75,7 @@ nav {
 nav a {
     font-size: 1.75rem;
     color: white;
-    margin-left: 4rem;
+    margin: 0 2rem;
     font-weight: 500;
     transition: 0.3s ease;
     border-bottom: 3px solid transparent;
@@ -87,6 +87,43 @@ nav a.active {
     border-bottom: 3px solid rgb(255, 225, 0);
     transform: scale(1.1);
 }
+
+.dropdown {
+  position: relative;
+}
+
+.dropdown-menu {
+  display: none;
+  position: absolute;
+  background-color: #021526;
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+  padding: 4px;
+  border-radius: 5px;
+  top: 30px;
+  left: auto;
+  z-index: 1;
+  min-width: 200px;
+}
+
+.dropdown-menu a {
+  display: block;
+  padding: 8px 12px;
+  color: #fff;
+  font-size: 1.5rem;
+}
+
+.dropdown-menu a:hover {
+  background-color: #555;
+}
+
+.dropdown:hover .dropdown-menu {
+  display: block;
+}
+
+.show {
+  display: block !important;
+}
+
 
 .menu-toggle {
     display: none;
@@ -235,183 +272,64 @@ section{
   100% { opacity: 1; }
 }
 
-
-/* Style untuk section form */
-#form {
-  padding-top: 4rem;
-}
-
-.layout {
-  display: flex;
-  min-height: 100vh;
-  align-items: stretch;
+.timetable {
+  display: inline-block;
+  width: 100%;
+  padding: 3rem 8.5%;
   background-color: #021526;
-  padding: 0 7rem; /* Space around the entire layout */
 }
-  
-.reminder {
-  flex: 1;
+
+.timetable h2 {
   margin-top: 3rem;
-  padding: 0 2rem; /* Space inside the reminder */
-  background-color: #021526;
-  color: white;
-  display: flex;
-  flex-direction: column;
-}
-
-  .reminder h1{
-    text-align: center;
-    font-size: 2.1rem;
-  }
-
-  .reminder p{
-    font-size: 1.4rem;
-    text-align: justify;
-  }
-  
-  /* Gambar di reminder */
-.reminder img {
-    width: 100vh;
-    margin-top: 5rem;
-    border-radius: 10px;
-    object-fit: cover;
-    cursor: pointer; /* Tunjukkan bahwa gambar bisa di-klik */
-}  
-  
-/* Form Pemesanan */
-.form-container {
-  background-color: transparent;
-  border: 4px solid rgb(255, 225, 0);
-  padding: 30px;
-  border-radius: 15px;
-  box-shadow: 0 8px 10px rgba(0, 0, 0, 0.15);
-  width: 100%;
-  max-width: 450px;
-  margin: 2rem; /* Space around the form container */
-}
-
-.form-container h2 {
   text-align: center;
-  margin-bottom: 3rem;
-  font-size: 2rem;
-}
-
-/* Input Container Styles */
-.input-container {
-  position: relative;
-  margin-bottom: 25px;
-}
-
-.input-container input {
-  width: 100%;
-  height: 50px;
-  padding: 5px 15px;
-  font-size: 1.3rem;
-  border: 2px solid rgb(255, 225, 0);
-  border-radius: 15px;
-  outline: none;
-  transition: all 0.3s ease;
-  background: transparent; 
-  color: #fff; /* Make the input text white */
-  z-index: 1; 
-}
-
-/* Input Focus & Valid State */
-.input-container input:focus,
-.input-container input:valid {
-  border-color: rgb(255, 225, 0);
-  box-shadow: 0 0 10px rgba(65, 88, 208, 0.2);
-  color: #fff; /* Keep the text color white when focused or valid */
-}
-
-.form-container p {
-  font-size: 1rem;
-  padding: 0 0 10px;
-}
-
-/* Floating Label Styles */
-.input-container label {
-  position: absolute;
-  top: 50%;
-  left: 20px;
-  color: #c8c4c4;
-  font-size: 1.3rem;
-  pointer-events: none;
-  transform: translateY(-50%);
-  transition: all 0.5s ease;
-  background-color: transparent; /* Match form container background */
-  padding: 0 3px;
-  z-index: 2; /* Ensure label floats above the input */
-}
-
-/* Label on Focus and Input Filled */
-.input-container input:focus ~ label,
-.input-container input:valid ~ label {
-  top: 0;
-  font-size: 1.3rem;
-  color: rgb(255, 225, 0);
-  padding: 0 7px;
-  transform: translateY(-50%);
-  background-color: #021526; /* Maintain label background to cut through input border */
-}
-
-.password-wrapper img {
-  position: absolute;
-  right: 20px;
-  top: 50%;
-  transform: translateY(-50%);
-  width: 20px;
-  height: 17px;
-  cursor: pointer; /* Add a pointer cursor to indicate it's clickable */
-}
-
-button {
-  width: 100%;
-  padding: 10px 30px;
-  background-color: rgb(255, 225, 0);
-  color: #021526;
-  border: none;
-  border-radius: 10px;
-  cursor: pointer;
-  font-size: 1.4rem;
+  margin-bottom: 15px;
+  font-size: 2.5rem;
   font-weight: 700;
-  transition: background-color 0.3s ease;
+  border-bottom: 3px solid white;
+  padding-bottom: 10px;
 }
 
-button:hover {
-  background-color: #218838;
+.timetable-img {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr); /* Membagi layout menjadi 4 kolom */
+  grid-template-rows: repeat(2, 1fr); /* Membagi layout menjadi 2 baris */
+  gap: 1.2rem;
 }
 
-.loading {
-  display: none; /* Hidden by default */
-  width: fit-content;
-  font-weight: bold;
-  font-family: sans-serif;
-  font-size: 1.6rem; /* Adjust font size */
-  text-align: center;
-  padding-bottom: 8px;
-  background: linear-gradient(currentColor 0 0) 0 100%/0% 3px no-repeat;
-  animation: l2 2s linear infinite;
-  color: #ffffff;
-  margin: 0 auto; /* Center horizontally */
-}
-
-@keyframes l2 {
-  to {
-    background-size: 100% 3px;
-  }
-}
-
-
-#output {
+/* Lightbox Container */
+.lightbox {
   display: none;
-  margin-top: 20px;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.8);
+  justify-content: center;
+  align-items: center;
+  flex-direction: column; /* Tambahkan agar konten berbaris secara vertikal */
+  z-index: 1000;
+}
+
+.lightbox.active {
+  display: flex;
+}
+
+.lightbox-img {
+  max-width: 90%;
+  max-height: 80%;
+  border-radius: 10px;
+  margin-bottom: 10px; /* Tambahkan jarak dari ikon close */
+}
+
+.close {
   font-size: 1.5rem;
-  font-weight: 800;
-  color: #ffffff;
+  color: #fff;
+  cursor: pointer;
   text-align: center;
-  font-weight: bold;
-}  
+  margin-top: 10px;
+}
+
 
   .testi {
     display: inline-block;
@@ -421,7 +339,7 @@ button:hover {
 }
 
 .testi h2 {
-    margin-top: 3rem;
+    margin-top: 2rem;
     text-align: center;
     margin-bottom: 15px;
     font-size: 2.5rem;
@@ -437,6 +355,14 @@ button:hover {
     gap: 1.2rem;
 }
 
+.timetable-img img {
+  display: block;
+  width: 100%; /* Mengisi penuh kolom */
+  aspect-ratio: 1 / 1; /* Membuat gambar menjadi persegi */
+  object-fit: cover; /* Memastikan gambar memenuhi area tanpa distorsi */
+  cursor: pointer;
+}
+
 .img-container {
     overflow: hidden; /* Menyembunyikan bagian gambar yang keluar dari container */
     border-radius: 5px; /* Opsional, memberikan sudut melengkung pada container */
@@ -447,16 +373,11 @@ button:hover {
     width: 100%; /* Mengisi penuh kolom */
     aspect-ratio: 1 / 1; /* Membuat gambar menjadi persegi */
     object-fit: cover; /* Memastikan gambar memenuhi area tanpa distorsi */
-    transition: transform 0.4s ease-in-out; /* Transisi untuk efek zoom */
-    cursor: pointer; /* Menunjukkan bahwa elemen dapat di-klik */
 }
 
-.img-container:hover img {
-    transform: scale(1.1); 
-}
 
 .testi h3 {
-  margin-top: 3rem;
+  margin-top: 4rem;
   text-align: center;
   margin-bottom: 15px;
   font-size: 2.5rem;
@@ -483,12 +404,6 @@ button:hover {
   width: 100%; 
   aspect-ratio: 4.5 / 1; 
   object-fit: cover; 
-  transition: transform 0.4s ease-in-out; 
-  cursor: pointer; 
-}
-
-.img-container:hover img {
-  transform: scale(1.1); 
 }
 
 .modal {
@@ -593,7 +508,7 @@ nav {
     top: 0;
     left: 0;
     width: 100%;
-    height: 50vh; /* Full screen height */
+    height: auto; /* Full screen height */
     max-width: none;
     background-color: rgba(2, 21, 38, 0.7);
     backdrop-filter: blur(10px);
@@ -673,84 +588,11 @@ nav a.active {
       font-size: 3rem;
   }
 
+  .timetable-img {
+    grid-template-columns: repeat(2, 1fr); /* Ubah menjadi 2 kolom untuk layar kecil */
+    object-fit: cover;
+}
 
-  #form {
-    padding: 3rem 9% 5rem; 
-  }
-
-  .layout {
-    flex-direction: column; 
-    padding: 0 2rem; 
-    align-items: center;
-  }
-
-  .reminder {
-    padding: 1rem;
-  }
-
-  .reminder h1 {
-    font-size: 1.8rem; 
-  }
-
-  .reminder p {
-    font-size: 1.2rem; 
-  }
-
-  .reminder img {
-    width: 100%; 
-    margin-top: 2rem; 
-  }
-
-  .modal-content {
-    max-width: 80%; 
-    max-height: 80%; 
-  }
-
-  .form-container {
-    padding: 20px;
-    margin: 1rem; 
-    max-width: 100%;
-  }
-
-  .form-container h2 {
-    font-size: 1.6rem; 
-  }
-
-  .input-container input {
-    height: 45px; 
-    font-size: 1.2rem; 
-  }
-
-  .input-container label {
-    font-size: 1.1rem;
-  }
-
-  .input-container input:focus ~ label,
-  .input-container input:valid ~ label {
-  top: 0;
-  font-size: 1.1rem;
-  }
-
-  button {
-    font-size: 1.2rem; 
-  }
-
-  .loading {
-    font-size: 1.4rem; 
-  }
-
-  #output {
-    font-size: 1.3rem; 
-  }
-    
-    .modal-content {
-      max-width: 100%; 
-      max-height: 100%;
-    }
-  
-    .close {
-      font-size: 30px; 
-    }
     .testi-img {
       grid-template-columns: repeat(2, 1fr); /* Ubah menjadi 2 kolom untuk layar kecil */
       object-fit: cover;
