@@ -272,31 +272,64 @@ section{
   100% { opacity: 1; }
 }
 
-.timetable {
-  display: inline-block;
-  width: 100%;
-  padding: 3rem 8.5%;
-  background-color: #021526;
+#timetable {
+  position: relative;
+  min-height: 50vh;
 }
 
 .timetable h2 {
-  margin-top: 3rem;
+  margin-top: 1.5rem;
   text-align: center;
   margin-bottom: 15px;
   font-size: 2.5rem;
   font-weight: 700;
   border-bottom: 3px solid white;
-  padding-bottom: 10px;
 }
 
-.timetable-img {
-  display: grid;
-  grid-template-columns: repeat(4, 1fr); /* Membagi layout menjadi 4 kolom */
-  grid-template-rows: repeat(2, 1fr); /* Membagi layout menjadi 2 baris */
-  gap: 1.2rem;
+.swiper-container {
+  width: 100%;
+  height: auto;
+  overflow: hidden;
 }
 
-/* Lightbox Container */
+.swiper-slide img {
+  width: 100%;
+  height: auto;
+  border-radius: 10px;
+  object-fit: cover;
+  cursor: pointer;
+}
+
+/* Posisi Navigasi */
+.swiper-button-next,
+.swiper-button-prev {
+  color: #fff;
+  position: absolute;
+  top: 5%;
+  transform: translateY(-20%);
+  z-index: 10;
+}
+
+.swiper-pagination {
+  bottom: 15px;
+  text-align: center;
+}
+
+.swiper-pagination .swiper-pagination-bullet {
+  background-color: rgba(255, 255, 255, 0.617) !important; 
+  opacity: 1 !important;
+  width: 8px;
+  height: 8px;
+  margin: 0 5px;
+  border-radius: 50%;
+  transition: background-color 0.3s ease, transform 0.3s ease;
+}
+
+.swiper-pagination .swiper-pagination-bullet-active {
+  background-color: rgb(255, 225, 0) !important; 
+  transform: scale(1.2);
+}
+
 .lightbox {
   display: none;
   position: fixed;
@@ -307,7 +340,6 @@ section{
   background-color: rgba(0, 0, 0, 0.8);
   justify-content: center;
   align-items: center;
-  flex-direction: column; /* Tambahkan agar konten berbaris secara vertikal */
   z-index: 1000;
 }
 
@@ -319,17 +351,22 @@ section{
   max-width: 90%;
   max-height: 80%;
   border-radius: 10px;
-  margin-bottom: 10px; /* Tambahkan jarak dari ikon close */
+  transition: transform 0.3s ease;
 }
 
 .close {
-  font-size: 1.5rem;
-  color: #fff;
+  position: absolute;
+  bottom: 20px; /* Posisikan di bawah */
+  left: 50%; /* Posisikan di tengah secara horizontal */
+  transform: translateX(-50%); /* Pastikan berada tepat di tengah */
+  font-size: 2rem;
+  color: white;
   cursor: pointer;
-  text-align: center;
-  margin-top: 10px;
 }
 
+.close:hover {
+  color: #555;
+}
 
   .testi {
     display: inline-block;
@@ -345,7 +382,6 @@ section{
     font-size: 2.5rem;
     font-weight: 700;
     border-bottom: 3px solid white;
-    padding-bottom: 10px;
 }
 
 .testi-img {
@@ -588,10 +624,22 @@ nav a.active {
       font-size: 3rem;
   }
 
-  .timetable-img {
-    grid-template-columns: repeat(2, 1fr); /* Ubah menjadi 2 kolom untuk layar kecil */
-    object-fit: cover;
-}
+  .swiper-slide img {
+    height: auto;
+    object-fit: contain; /* Ubah untuk memastikan gambar tidak terpotong */
+  }
+
+  /* Navigasi lebih kecil di layar mobile */
+  .swiper-button-next,
+  .swiper-button-prev {
+    top: 10%;
+    transform: translateY(-50%);
+    font-size: 1.2rem; /* Perkecil ukuran navigasi */
+  }
+
+  .swiper-pagination .swiper-pagination-bullet-active {
+    transform: scale(1.1);
+  }
 
     .testi-img {
       grid-template-columns: repeat(2, 1fr); /* Ubah menjadi 2 kolom untuk layar kecil */
