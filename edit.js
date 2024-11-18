@@ -92,8 +92,9 @@ const words = ["Gacorrr", "Trusted", "Aman 100%", "Murah",];
       const lightbox = document.getElementById('lightbox');
       const lightboxImg = document.querySelector('.lightbox-img');
       const closeBtn = document.querySelector('.close');
-      const images = document.querySelectorAll('.img-container img');
+      const images = document.querySelectorAll('.swiper-slide img');
     
+      // Membuka lightbox saat gambar di klik
       images.forEach(img => {
         img.addEventListener('click', function () {
           const largeImgSrc = this.getAttribute('data-large');
@@ -102,16 +103,36 @@ const words = ["Gacorrr", "Trusted", "Aman 100%", "Murah",];
         });
       });
     
+      // Menutup lightbox dengan tombol close
       closeBtn.addEventListener('click', function () {
         lightbox.classList.remove('active');
       });
     
-      // Tutup lightbox jika pengguna mengklik di luar gambar
+      // Menutup lightbox jika pengguna mengklik di luar gambar
       lightbox.addEventListener('click', function (e) {
         if (e.target === lightbox) {
           lightbox.classList.remove('active');
         }
       });
+    });
+    
+
+    const swiper = new Swiper('.swiper-container', {
+      loop: true,
+      spaceBetween: 20,
+      slidesPerView: 1,
+      navigation: {
+        nextEl: '.swiper-button-next',
+        prevEl: '.swiper-button-prev',
+      },
+      pagination: {
+        el: '.swiper-pagination',
+        clickable: true,
+      },
+      autoplay: {
+        delay: 4000,
+        disableOnInteraction: false,
+      },
     });
     
     
