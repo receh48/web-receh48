@@ -8,6 +8,9 @@
     <link rel="stylesheet" href="styles.css">
     <script src="https://unpkg.com/scrollreveal"></script>
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper/swiper-bundle.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/swiper/swiper-bundle.min.js"></script>
+
 
     <link rel="icon" href="img/receh48.jpg">
     <title>Website Receh48</title>
@@ -53,40 +56,26 @@
     </section>
 
     <section id="timetable" class="timetable">
-        <h2>TimeTable</h2>
-        <div class="timetable-img">
-          <div class="img-container">
-            <img src="img/vc-novem (1).jpg" alt="Image 1" data-large="img/vc-novem (1).jpg">
-          </div>
-          <div class="img-container">
-            <img src="img/vc-novem (2).jpg" alt="Image 2" data-large="img/vc-novem (2).jpg">
-          </div>
-          <div class="img-container">
-            <img src="img/vc-novem (3).jpg" alt="Image 3" data-large="img/vc-novem (3).jpg">
-          </div>
-          <div class="img-container">
-            <img src="img/vc-novem (4).jpg" alt="Image 4" data-large="img/vc-novem (4).jpg">
-          </div>
-          <div class="img-container">
-            <img src="img/vc-novem (5).jpg" alt="Image 5" data-large="img/vc-novem (5).jpg">
-          </div>
-          <div class="img-container">
-            <img src="img/vc-novem (6).jpg" alt="Image 6" data-large="img/vc-novem (6).jpg">
-          </div>
-          <div class="img-container">
-            <img src="img/cs.jpg" alt="Image 6" data-large="img/cs.jpg">
-          </div>
-          <div class="img-container">
-            <img src="img/cs.jpg" alt="Image 6" data-large="img/cs.jpg">
-          </div>
+      <h2>TimeTable</h2>
+      <div class="swiper-container">
+        <div class="swiper-wrapper">
+          <div class="swiper-slide"><img src="img/vc-novem (1).jpg" alt="Image 1" data-large="img/vc-novem (1).jpg"></div>
+          <div class="swiper-slide"><img src="img/vc-novem (2).jpg" alt="Image 2" data-large="img/vc-novem (2).jpg"></div>
+          <div class="swiper-slide"><img src="img/vc-novem (3).jpg" alt="Image 3" data-large="img/vc-novem (3).jpg"></div>
+          <div class="swiper-slide"><img src="img/vc-novem (4).jpg" alt="Image 4" data-large="img/vc-novem (4).jpg"></div>
+          <div class="swiper-slide"><img src="img/vc-novem (5).jpg" alt="Image 5" data-large="img/vc-novem (5).jpg"></div>
+          <div class="swiper-slide"><img src="img/vc-novem (6).jpg" alt="Image 6" data-large="img/vc-novem (6).jpg"></div>
         </div>
-      
-        <!-- Lightbox Modal -->
-        <div id="lightbox" class="lightbox">
-          <span class="close">&times;</span>
-          <img class="lightbox-img" src="" alt="">
-        </div>
-      </section>
+        <div class="swiper-pagination"></div>
+      </div>
+    
+      <!-- Lightbox Modal -->
+      <div id="lightbox" class="lightbox">
+        <span class="close">&times;</span>
+        <img class="lightbox-img" src="" alt="Large Image">
+      </div>
+    </section>    
+        
       
       
       <section id="testi" class="testi">
