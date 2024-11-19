@@ -1,0 +1,336 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@100;200;300;400;500;600&display=swap');
+
+*{
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  text-decoration: none;
+  border: none;
+  outline: none;
+  font-family: 'Poppins', sans-serif;
+}
+
+html{
+  font-size: 62.5%;
+  scroll-behavior: smooth;
+}
+
+body{
+  width: 100%;
+  height: 100vh;
+  overflow-x: hidden;
+  background-color: #021526;
+  color: white;
+}
+
+section{
+  min-height: 100vh;
+  padding: 5rem 8% 5rem;
+}
+
+.layout {
+  display: flex;
+  min-height: 100vh;
+  align-items: stretch;
+  background-color: #021526;
+  padding: 0 7rem; 
+  padding-top: 2rem;
+}
+  
+.reminder {
+  flex: 1;
+  margin-top: 3rem;
+  padding: 0 2rem;
+  background-color: #021526;
+  color: white;
+  display: flex;
+  flex-direction: column;
+}
+
+  .reminder h1{
+    text-align: center;
+    font-size: 2.1rem;
+  }
+
+  .reminder p{
+    font-size: 1.4rem;
+    text-align: justify;
+  }
+
+  .member-list {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 2px;
+    margin-top: 5px;
+  }
+  
+  .member-list p {
+    margin: 2px 0;
+    padding-left: 20px;
+    position: relative;
+  }
+  
+  /* Tambahkan bullet atau icon di depan teks */
+  .member-list p::before {
+    content: "•";
+    position: absolute;
+    left: 0;
+    color: rgb(255, 225, 0);
+  }
+
+  
+/* Form Pemesanan */
+.form-container {
+    background-color: transparent;
+    border: 4px solid rgb(255, 225, 0);
+    padding: 30px;
+    border-radius: 15px;
+    box-shadow: 0 8px 10px rgba(0, 0, 0, 0.15);
+    width: 100%;
+    max-width: 450px;
+    margin: 2rem; /* Space around the form container */
+  }
+  
+  .form-container h2 {
+    text-align: center;
+    margin-bottom: 3rem;
+    font-size: 2rem;
+  }
+  
+  /* Input Container Styles */
+  .input-container {
+    position: relative;
+    margin-bottom: 25px;
+  }
+  
+  .input-container input,
+  .input-container select {
+    width: 100%;
+    height: 50px;
+    padding: 5px 15px;
+    font-size: 1.3rem;
+    border: 2px solid rgb(255, 225, 0);
+    border-radius: 15px;
+    outline: none;
+    transition: all 0.3s ease;
+    background: transparent; 
+    color: #fff;
+    z-index: 1;
+    appearance: none; /* Remove default select arrow */
+  }
+  
+  /* Tambahkan gaya untuk select */
+  /* Gaya umum untuk elemen select */
+.input-container select {
+    cursor: pointer;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' fill='rgb(255, 225, 0)' class='bi bi-chevron-down' viewBox='0 0 16 16'%3E%3Cpath fill-rule='evenodd' d='M1.646 4.646a.5.5 0 0 1 .708 0L8 10.293l5.646-5.647a.5.5 0 0 1 .708.708l-6 6a.5.5 0 0 1-.708 0l-6-6a.5.5 0 0 1 0-.708z'/%3E%3C/svg%3E");
+    background-repeat: no-repeat;
+    background-position: right 15px center;
+    background-size: 20px;
+    padding-right: 40px; /* Ruang untuk ikon panah */
+    color: #c8c4c4; /* Warna default (placeholder) */
+  }
+  
+  /* Ubah warna teks saat select dipilih atau focus */
+  .input-container select:focus,
+  .input-container select:not([value=""]) {
+    color: #000; /* Teks berubah jadi hitam saat dipilih */
+  }
+  
+  /* Gaya saat opsi dipilih */
+  .input-container select option {
+    color: #000; /* Teks hitam untuk opsi */
+  }
+  
+  
+  /* Focus & Valid State */
+  .input-container input:focus,
+  .input-container input:valid,
+  .input-container select:focus,
+  .input-container select:valid {
+    border-color: rgb(255, 225, 0);
+    box-shadow: 0 0 10px rgba(65, 88, 208, 0.2);
+    color: #ffffff;
+  }
+  
+  .form-container p {
+    font-size: 1rem;
+    padding: 0 0 10px;
+  }
+  
+  /* Floating Label Styles */
+  .input-container label {
+    position: absolute;
+    top: 50%;
+    left: 20px;
+    color: #c8c4c4;
+    font-size: 1.3rem;
+    pointer-events: none;
+    transform: translateY(-50%);
+    transition: all 0.5s ease;
+    background-color: transparent;
+    padding: 0 3px;
+    z-index: 2;
+  }
+  
+  /* Label on Focus and Input Filled */
+  .input-container input:focus ~ label,
+  .input-container input:valid ~ label,
+  .input-container select:focus ~ label,
+  .input-container select:valid ~ label {
+    top: 0;
+    font-size: 1.3rem;
+    color: rgb(255, 225, 0);
+    padding: 0 7px;
+    transform: translateY(-50%);
+    background-color: #021526;
+  }
+
+button {
+  width: 100%;
+  padding: 10px 30px;
+  background-color: rgb(255, 225, 0);
+  color: #021526;
+  border: none;
+  border-radius: 10px;
+  cursor: pointer;
+  font-size: 1.4rem;
+  font-weight: 700;
+  transition: background-color 0.3s ease;
+}
+
+button:hover {
+  background-color: #218838;
+}
+
+.loading {
+  display: none; /* Hidden by default */
+  width: fit-content;
+  font-weight: bold;
+  font-family: sans-serif;
+  font-size: 1.6rem; /* Adjust font size */
+  text-align: center;
+  padding-bottom: 8px;
+  background: linear-gradient(currentColor 0 0) 0 100%/0% 3px no-repeat;
+  animation: l2 2s linear infinite;
+  color: #ffffff;
+  margin: 0 auto; /* Center horizontally */
+}
+
+@keyframes l2 {
+  to {
+    background-size: 100% 3px;
+  }
+}
+
+#output {
+  display: none;
+  margin-top: 20px;
+  font-size: 1.5rem;
+  font-weight: 800;
+  color: #ffffff;
+  text-align: center;
+  font-weight: bold;
+}
+
+@media (max-width: 995px) {
+  /* Atur ukuran font */
+  html {
+    font-size: 58%;
+    padding: 4rem 5%;
+  }
+
+  /* Header dan Navbar */
+  header {
+    flex-direction: column;
+    align-items: flex-start;
+    padding: 10px 5%;
+  }
+
+  nav {
+    flex-direction: column;
+    width: 100%;
+    display: none;
+    gap: 15px;
+  }
+
+  nav.open {
+    display: flex;
+  }
+
+  .menu-toggle {
+    display: block;
+    margin-left: auto;
+  }
+
+  .dropdown-menu {
+    position: static;
+    background-color: #021526;
+    box-shadow: none;
+    width: 100%;
+    padding: 0;
+  }
+
+  .dropdown-menu a {
+    padding: 10px;
+    text-align: left;
+  }
+
+  /* Section Layout */
+  section {
+    padding: 4rem 5%;
+  }
+
+  .layout {
+    flex-direction: column;
+    padding: 0 2rem;
+  }
+
+  .reminder {
+    margin-top: 2rem;
+    padding: 0;
+  }
+
+  .reminder img {
+    width: 100%;
+    margin-top: 2rem;
+    height: auto;
+  }
+
+  /* Form Container */
+  .form-container {
+    padding: 20px;
+    width: 100%;
+    margin: 2rem auto;
+  }
+
+  .form-container h2 {
+    font-size: 1.8rem;
+  }
+
+  .input-container input {
+    height: 45px;
+    font-size: 1.2rem;
+  }
+
+  .input-container label {
+    font-size: 1.2rem;
+    left: 15px;
+  }
+
+  /* Button */
+  button {
+    padding: 8px 20px;
+    font-size: 1.2rem;
+  }
+
+  /* Loading & Output */
+  .loading {
+    font-size: 1.4rem;
+  }
+
+  #output {
+    font-size: 1.4rem;
+    margin-top: 15px;
+  }
+}

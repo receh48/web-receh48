@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+    
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+    <link rel="stylesheet" href="jastip.css">
+    <script src="https://unpkg.com/scrollreveal"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
+    <link rel="icon" href="img/receh48.jpg">
+    <title>Form Jastip PC Receh48</title>
+</head>
+<body>
+
+  <div class="layout">
+    <div class="reminder">
+      <h1>Jastip PC JKT48 By @receh48</h1><br><br>
+      <p>NOTE :</p>
+      <p>1. Tidak termasuk kode vote.</p>
+      <p>2. Payment diawal!, Full Refund 100% Jika tidak dapat.</p>
+      <p>3. Pastikan Akun kalian bisa dihubungi untuk konfirmasi dari tim kami.</p>
+      <p>4. Apabila terjadi kesalahan menulis data bisa langsung dm X kami.</p> 
+      <p>5. Kami hanya open beberapa member tidak semua member.</p>
+      <p>6. Harga kami samakan semua yaitu 40K/PC.</p>
+      <br>
+
+      <h2>LIST MEMBERNYA :</h2>
+<div class="member-list">
+  <p>Cornelia Vanisa</p>
+  <p>Grace Octaviani</p>
+  <p>Ribka Budiman</p>
+  <p>Jazzlyn Trisha</p> 
+  <p>Hillary Abigail</p>
+  <p>Letycia Moreen</p>
+  <p>Jessica Chandra</p>
+  <p>Febriola Sinambela</p>
+  <p>Gita Sekar Andarini</p>
+  <p>Aurellia</p>
+  <p>Lulu Salsabila </p>
+</div>
+    </div>
+  
+    <div class="form-container">
+        <h2>Form Jastip Photocard JKT48</h2>
+        <form name="form-jastip-receh48">
+          
+          <!-- Input Nama Lengkap -->
+          <div class="input-container">
+            <input type="text" id="nama" name="nama" required>
+            <label for="nama">Nama Lengkap</label>
+          </div>
+      
+          <!-- Input Username -->
+          <div class="input-container">
+            <input type="text" id="username" name="username" required>
+            <label for="username">Username X/ID Line/No Whatsapp</label>
+          </div>
+      
+          <!-- Input Member -->
+          <p>Gunakan tanda , untuk mengisi lebih dari 1 member.</p>
+          <div class="input-container">
+            <input type="text" id="member" name="member" required>
+            <label for="member">Member (Jumlah PC)</label>
+          </div>
+      
+          <!-- Input Lokasi Pengiriman -->
+          <div class="input-container">
+            <select id="pengiriman" name="pengiriman" required>
+                <option value="" disabled selected>Pilih Metode</option>
+                <option value="COD di Fx Sudirman">COD di Fx Sudirman</option>
+                <option value="Kirim Via Shoppe">Kirim Via Shoppe</option>
+            </select>
+            <label for="pengiriman">Pengiriman</label>
+          </div>
+      
+          <!-- Pilihan Metode Pembayaran -->
+          <div class="input-container">
+            <select id="pembayaran" name="pembayaran" required>
+                <option value="" disabled selected>Pilih Metode Pembayaran</option>
+                <option value="Dana">Dana</option>
+                <option value="Gopay">GoPay</option>
+                <option value="Qris">QRIS</option>
+                <option value="Bca">BCA</option>
+                <option value="Seabank">SeaBank</option>
+                <option value="Ovo">OVO</option>
+                <option value="Shopeepay">ShopeePay</option>
+            </select>
+            <label for="pembayaran">Metode Pembayaran</label>
+          </div>        
+      
+          <!-- Tombol Submit -->
+          <button type="submit">Kirim</button>
+          <div id="loading" class="loading">Tunggu Sebentar...</div>
+          <p id="output"></p>
+        </form>
+      </div>
+      
+  </div>
+
+    <script src="jastip.js"></script>
+</body>
+</html>
