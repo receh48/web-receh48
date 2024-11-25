@@ -134,5 +134,41 @@ const words = ["Gacorrr", "Trusted", "Aman 100%", "Murah",];
         disableOnInteraction: false,
       },
     });
+
+    document.getElementById('searchButton').addEventListener('click', function () {
+      const password = document.getElementById('password').value.trim();
+      const url = 'https://script.google.com/macros/s/AKfycbz2bVf1dfqb56zgNsus8goNYfwfEDGm_0f7dbPr3JPzb8BAreGHmgNts5cdYOVoiDqf/exec';
+      const resultDiv = document.getElementById('result');
+    
+      // Validasi input
+      if (!password) {
+        resultDiv.textContent = 'Password tidak boleh kosong.';
+        resultDiv.className = 'result error';
+        return;
+      }
+    
+      // Reset hasil
+      resultDiv.textContent = 'Mencari...';
+      resultDiv.className = 'result';
+    
+      // Kirim permintaan ke Google Apps Script
+      fetch(url, {
+        method: 'POST',
+        body: new URLSearchParams({ action: 'search', password })
+      })
+        .then(response => response.json())
+        .then(data => {
+          if (data.result === 'success') {
+            resultDiv.textContent = `Status : ${data.data.status}`;
+          } else {
+            resultDiv.textContent = `Error : ${data.message}`;
+          }          
+        })
+        .catch(error => {
+          resultDiv.textContent = 'Terjadi kesalahan. Silakan coba lagi.';
+          resultDiv.className = 'result error';
+        });
+    });
+    
     
     
