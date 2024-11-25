@@ -137,7 +137,8 @@ const words = ["Gacorrr", "Trusted", "Aman 100%", "Murah",];
 
     document.getElementById('searchButton').addEventListener('click', function () {
       const password = document.getElementById('password').value.trim();
-      const url = 'https://script.google.com/macros/s/AKfycbz2bVf1dfqb56zgNsus8goNYfwfEDGm_0f7dbPr3JPzb8BAreGHmgNts5cdYOVoiDqf/exec';
+      const url1 = 'https://script.google.com/macros/s/AKfycbz2bVf1dfqb56zgNsus8goNYfwfEDGm_0f7dbPr3JPzb8BAreGHmgNts5cdYOVoiDqf/exec';
+      const url2 = 'https://script.google.com/macros/s/AKfycbzgMBgm-PW-WLy1pFPR3Do_Pj2xGkTUVhxvU-sPJ1HTVxxkqzdEx4n-XCc5B607JyhzmA/exec';
       const resultDiv = document.getElementById('result');
     
       // Validasi input
@@ -151,21 +152,39 @@ const words = ["Gacorrr", "Trusted", "Aman 100%", "Murah",];
       resultDiv.textContent = 'Mencari...';
       resultDiv.className = 'result';
     
-      // Kirim permintaan ke Google Apps Script
-      fetch(url, {
-        method: 'POST',
-        body: new URLSearchParams({ action: 'search', password })
-      })
-        .then(response => response.json())
+      // Fungsi untuk mencoba URL
+      const tryFetch = (url) =>
+        fetch(url, {
+          method: 'POST',
+          body: new URLSearchParams({ action: 'search', password }),
+        });
+    
+      // Coba URL 1, jika gagal coba URL 2
+      tryFetch(url1)
+        .then(response => {
+          if (!response.ok) throw new Error('URL 1 failed');
+          return response.json();
+        })
         .then(data => {
           if (data.result === 'success') {
             resultDiv.textContent = `Status : ${data.data.status}`;
           } else {
-            resultDiv.textContent = `Error : ${data.message}`;
-          }          
+            throw new Error(data.message);
+          }
         })
-        .catch(error => {
-          resultDiv.textContent = 'Terjadi kesalahan. Silakan coba lagi.';
+        .catch(() => {
+          return tryFetch(url2)
+            .then(response => response.json())
+            .then(data => {
+              if (data.result === 'success') {
+                resultDiv.textContent = `Status : ${data.data.status}`;
+              } else {
+                resultDiv.textContent = `Error : ${data.message}`;
+              }
+            });
+        })
+        .catch(() => {
+          resultDiv.textContent = 'Terjadi kesalahan pada kedua URL. Silakan coba lagi.';
           resultDiv.className = 'result error';
         });
     });
