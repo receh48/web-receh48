@@ -21,51 +21,26 @@ const scriptURL = 'https://script.google.com/macros/s/AKfycby-KbA1KVV4h12LFC5kkB
 const form = document.forms['form-jastip-receh48'];
 const loading = document.getElementById('loading');
 const output = document.getElementById('output');
-const submitButton = form.querySelector('button[type="submit"]');
+
+// Tambahkan variabel untuk mengontrol status form
+let formIsOpen = false;  // Set ke 'false' untuk menutup form
 
 form.addEventListener('submit', e => {
-  e.preventDefault(); 
+  e.preventDefault();
 
+  form.reset();
 
-  submitButton.style.display = 'none'; 
-  loading.style.display = 'block'; 
-  output.style.display = 'none'; 
-
-  const nama = document.getElementById('nama').value.trim();
-
-  // Send data to Google Apps Script
-  fetch(scriptURL, { method: 'POST', body: new FormData(form) })
-    .then(response => {
-      loading.style.display = 'none'; 
-      output.style.display = 'block'; 
-      output.textContent = 'Data Sudah Terkirim 🙏'; 
-      
-      form.reset();
-
-      Swal.fire({
-        title: 'Sukses!',
-        text: `Terimakasih Ka ${nama}, Data Sudah Terkirim, Mohon Ditunggu Untuk Admin Konfirmasi🙏`,
-        imageUrl: 'img/icel-ty.gif',
-        imageWidth: 150,
-        confirmButtonText: 'OK'
-      }); 
-    })
-    .catch(error => {
-      loading.style.display = 'none'; 
-      output.style.display = 'block'; 
-      output.textContent = 'Terjadi kesalahan: ' + error.message; 
-
-      Swal.fire({
-        icon: 'error',
-        title: 'Error!',
-        text: 'Terjadi kesalahan saat mengirim data!',
-        confirmButtonText: 'OK'
-      });
-
-      submitButton.style.display = 'block';
+  // Periksa apakah form sedang terbuka
+  if (!formIsOpen) {
+    Swal.fire({
+      title: 'FULL SLOT!',
+      imageUrl: 'img/shani-maaf.gif',
+      imageWidth: 150,
+      confirmButtonText: 'OK'
     });
+    return;
+  }
 });
-
 
 const inputs = [
     document.getElementById('nama'),
