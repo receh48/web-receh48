@@ -35,27 +35,76 @@ const scriptURL = 'https://script.google.com/macros/s/AKfycbz4PQ5gE8XTkhxkzoUM7L
 const form = document.forms['form-vc-receh48'];
 const loading = document.getElementById('loading');
 const output = document.getElementById('output');
+const submitButton = form.querySelector('button[type="submit"]');
 
-// Tambahkan variabel untuk mengontrol status form
-let formIsOpen = false;  // Set ke 'false' untuk menutup form
+const restrictedMembers = [
+  'Marsha Lenathea', 'Marsha','Erine','Catherina Vallencia'
+]; // Daftar nama member yang dibatasi
 
 form.addEventListener('submit', e => {
   e.preventDefault();
 
-  form.reset();
+  // Ambil input pengguna dan bersihkan dari karakter yang tidak diinginkan
+  let memberInput = document.getElementById('sesi').value.trim();
 
-  // Periksa apakah form sedang terbuka
-  if (!formIsOpen) {
+  // Hapus tanda kutip, karakter khusus, dan spasi ekstra
+  memberInput = memberInput.replace(/['"`~!@#$%^&*()_+={}\[\]:;<>?,./\\|]/g, '').toLowerCase();
+
+  // Periksa apakah input mengandung kata dari daftar nama member (case insensitive)
+  const isRestricted = restrictedMembers.some(name => 
+    memberInput.includes(name.toLowerCase())
+  );
+
+  if (isRestricted) {
     Swal.fire({
-      icon: 'error',
-      title: 'Masih Kami Tutup',
-      text: 'Sabar yaa belum ada jadwal timetable nya.',
+      title: 'Full Slot!',
+      text: `Maaf, slot untuk member ${memberInput} sudah penuh.`,
+      imageUrl: 'img/shani-maaf.gif',
+      imageWidth: 150,
       confirmButtonText: 'OK'
     });
-    return;
-  }
-});
 
+    return; // Hentikan pengiriman form
+  }
+
+  submitButton.style.display = 'none'; 
+  loading.style.display = 'block'; 
+  output.style.display = 'none'; 
+
+  const nama = document.getElementById('nama').value.trim();
+
+  // Kirim data ke Google Apps Script
+  fetch(scriptURL, { method: 'POST', body: new FormData(form) })
+    .then(response => {
+      loading.style.display = 'none'; 
+      output.style.display = 'block'; 
+      output.textContent = 'Data Sudah Terkirim 🙏'; 
+      
+      form.reset();
+
+      Swal.fire({
+        title: 'Sukses!',
+        text: `Terimakasih Ka ${nama}, Data Sudah Terkirim 🙏`,
+        imageUrl: 'img/icel-ty.gif',
+        imageWidth: 150,
+        confirmButtonText: 'OK'
+      });      
+    })
+    .catch(error => {
+      loading.style.display = 'none'; 
+      output.style.display = 'block'; 
+      output.textContent = 'Terjadi kesalahan: ' + error.message; 
+
+      Swal.fire({
+        icon: 'error',
+        title: 'Error!',
+        text: 'Terjadi kesalahan saat mengirim data!',
+        confirmButtonText: 'OK'
+      });
+
+      submitButton.style.display = 'block';
+    });
+});
 
 const inputs = [
   document.getElementById('nama'),
