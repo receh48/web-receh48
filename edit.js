@@ -134,3 +134,13 @@ const words = ["Gacorrr", "Trusted", "Aman 100%", "Murah",];
         disableOnInteraction: false,
       },
     });
+
+
+    // Toggle tampilkan form options
+    const orderBtn = document.getElementById('order-btn');
+    const formOptions = document.querySelector('.form-options');
+
+    orderBtn.addEventListener('click', () => {
+        formOptions.classList.toggle('hidden');
+        formOptions.classList.toggle('show');
+    });
