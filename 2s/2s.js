@@ -49,7 +49,7 @@ form.addEventListener('submit', e => {
   memberName = memberName.replace(/['"`~!@#$%^&*()_+={}\[\]:;<>?,./\\|]/g, '').toLowerCase();
 
   // Periksa apakah nama member termasuk dalam daftar yang dibatasi (case insensitive)
-  const isRestricted = restrictedMembers.some(name => name.toLowerCase() === memberName);
+  //const isRestricted = restrictedMembers.some(name => name.toLowerCase() === memberName);
 
   if (isRestricted) {
     Swal.fire({
