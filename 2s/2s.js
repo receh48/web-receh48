@@ -47,9 +47,9 @@ form.addEventListener('submit', e => {
   // Periksa apakah form sedang terbuka
   if (!formIsOpen) {
     Swal.fire({
-      icon: 'error',
-      title: 'Full Slot',
-      text: 'Maaf Joki 2Shoot Sudah Penuh',
+      title: 'Mohon Maaf Joki 2S Sudah FULL SLOT!',
+      imageUrl: 'img/shani-maaf.gif',
+      imageWidth: 150,
       confirmButtonText: 'OK'
     });
     return;
