@@ -32,7 +32,7 @@ eyeicon.onclick = function () {
 
 // form pemesanan
 const scriptURL = 'https://script.google.com/macros/s/AKfycbyI3HbZl8cKp2IFhUz1u_O6B5i6kCnVEf6N84ufjC5H41C7oS--KW3vwRkOoYyMWUBB7A/exec';
-const form = document.forms['form-vc-receh48'];
+const form = document.forms['form-2s-receh48'];
 const loading = document.getElementById('loading');
 const output = document.getElementById('output');
 
