@@ -37,6 +37,8 @@ const loading = document.getElementById('loading');
 const output = document.getElementById('output');
 const submitButton = form.querySelector('button[type="submit"]');
 
+/*const restrictedMembers = ['Marsha Lenathea', 'Marsha', 'Gracia', 'Adeline Wijaya', 'Freya', 'Freya Jayawardana', 'Christy', 'Angelina Christy', 'Shania Gracia', 'Erine', 'Oline', 'Oline Manuel', 'Catherina Vallencia', 'Delynn', 'Michie', 'Michelle Alexandra']; // Daftar nama member yang dibatasi
+
 form.addEventListener('submit', e => {
   e.preventDefault();
 
@@ -46,44 +48,98 @@ form.addEventListener('submit', e => {
   // Hapus tanda kutip, karakter khusus, dan spasi ekstra
   memberName = memberName.replace(/['"`~!@#$%^&*()_+={}\[\]:;<>?,./\\|]/g, '').toLowerCase();
 
+  // Periksa apakah nama member termasuk dalam daftar yang dibatasi (case insensitive)
+  const isRestricted = restrictedMembers.some(name => name.toLowerCase() === memberName);
+
+  if (isRestricted) {
+    Swal.fire({
+      title: 'Slot Penuh!',
+      text: `Maaf, slot untuk ${memberName} sudah penuh.`,
+      imageUrl: 'img/shani-maaf.gif',
+      imageWidth: 150,
+      confirmButtonText: 'OK'
+    });
+
+    return; // Hentikan pengiriman form
+  } */
+
   submitButton.style.display = 'none'; 
   loading.style.display = 'block'; 
   output.style.display = 'none'; 
 
   const nama = document.getElementById('nama').value.trim();
 
-  // Kirim data ke Google Apps Script
-  fetch(scriptURL, { method: 'POST', body: new FormData(form) })
-    .then(response => {
-      loading.style.display = 'none'; 
-      output.style.display = 'block'; 
-      output.textContent = 'Data Sudah Terkirim 🙏'; 
-      
-      form.reset();
+  // 🔹 Konfirmasi dulu sebelum submit
+  Swal.fire({
+    title: 'Konfirmasi',
+    text: 'Pastikan anda sudah membaca seluruh aturan PO Joki nya 🙏',
+    icon: 'warning',
+    confirmButtonText: 'Saya Sudah',
+    allowOutsideClick: false,
+    allowEscapeKey: false,
+    customClass: {
+      popup: 'animate__animated animate__bounceIn',
+      confirmButton: 'animate__animated animate__pulse animate__infinite',
+    }
 
-      Swal.fire({
-        title: 'Sukses!',
-        text: `Terimakasih Ka ${nama}, Data Sudah Terkirim 🙏`,
-        imageUrl: 'img/icel-ty.gif',
-        imageWidth: 150,
-        confirmButtonText: 'OK'
-      });      
-    })
-    .catch(error => {
-      loading.style.display = 'none'; 
-      output.style.display = 'block'; 
-      output.textContent = 'Terjadi kesalahan: ' + error.message; 
+  }).then((result) => {
+    if (result.isConfirmed) {
+  // Disable tombol dan sembunyikan
+  submitButton.disabled = true;
+  submitButton.style.display = 'none';
 
-      Swal.fire({
-        icon: 'error',
-        title: 'Error!',
-        text: 'Terjadi kesalahan saat mengirim data!',
-        confirmButtonText: 'OK'
-      });
+  // Tampilkan loading
+  loading.style.display = 'block';
+  output.style.display = 'none';
 
-      submitButton.style.display = 'block';
+      // Kirim data ke Google Apps Script
+      fetch(scriptURL, { method: 'POST', body: new FormData(form) })
+  .then(response => {
+    loading.style.display = 'none'; 
+    output.style.display = 'block'; 
+    output.textContent = 'Data Sudah Terkirim 🙏'; 
+    form.reset();
+
+    Swal.fire({
+      title: 'Sukses!',
+      text: `Terimakasih Ka ${nama}, Data Sudah Terkirim, Cek Email Secara Berkala (Jika Tidak Muncul Bisa Cek Di Spam) 🙏`,
+      imageUrl: 'img/icel-ty.gif',
+      imageWidth: 150,
+      confirmButtonText: 'OK',
+      customClass: {
+        popup: 'animate__animated animate__fadeInDown'
+      }
+    }).then((result) => {
+      if (result.isConfirmed) {
+
+        location.reload();
+      } else if (result.dismiss === Swal.DismissReason.cancel || 
+             result.dismiss === Swal.DismissReason.backdrop || 
+             result.dismiss === Swal.DismissReason.esc) {
+    location.reload();
+  }
     });
-});
+  })
+        
+  .catch(error => {
+    loading.style.display = 'none'; 
+    output.style.display = 'block'; 
+    output.textContent = 'Terjadi kesalahan: ' + error.message; 
+
+    Swal.fire({
+      icon: 'error',
+      title: 'Error!',
+      text: 'Terjadi kesalahan saat mengirim data!',
+      confirmButtonText: 'OK',
+      customClass: {
+        popup: 'animate__animated animate__shakeX'
+      }
+    });
+    submitButton.style.display = 'block';
+  });
+      }
+        });
+           // });
 
 
 const inputs = [
