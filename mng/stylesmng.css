@@ -153,35 +153,47 @@ section{
   cursor: pointer; /* Add a pointer cursor to indicate it's clickable */
 }
 
-button {
-  width: 100%;
-  padding: 10px 30px;
-  background-color: rgb(255, 225, 0);
-  color: #021526;
+#submitBtn {
+  display: inline-block;
+  padding: 10px 20px;
+  font-size: 1.3rem;
+  font-weight: bold;
+  color: #fff;
+  background: linear-gradient(135deg, #4cafef, #0066cc);
   border: none;
-  border-radius: 10px;
+  border-radius: 12px;
   cursor: pointer;
-  font-size: 1.4rem;
+  transition: all 0.3s ease;
+  width: 100%;
   font-weight: 700;
-  transition: background-color 0.3s ease;
 }
 
-button:hover {
-  background-color: #218838;
+/* Hover effect */
+#submitBtn:hover {
+  background: linear-gradient(135deg, #0066cc, #4cafef);
+  transform: scale(1.05);
 }
 
+/* Disabled state */
+#submitBtn:disabled {
+  background: #999;
+  cursor: not-allowed;
+  transform: none;
+}
+
+/* Loading */
 .loading {
-  display: none; /* Hidden by default */
+  display: none; /* Hidden awal */
   width: fit-content;
   font-weight: bold;
   font-family: sans-serif;
-  font-size: 1.6rem; /* Adjust font size */
+  font-size: 1.6rem;
   text-align: center;
   padding-bottom: 8px;
   background: linear-gradient(currentColor 0 0) 0 100%/0% 3px no-repeat;
   animation: l2 2s linear infinite;
   color: #ffffff;
-  margin: 0 auto; /* Center horizontally */
+  margin: 10px auto 0 auto; /* Center + ada jarak */
 }
 
 @keyframes l2 {
@@ -190,6 +202,7 @@ button:hover {
   }
 }
 
+/* Output */
 #output {
   display: none;
   margin-top: 20px;
@@ -197,7 +210,6 @@ button:hover {
   font-weight: 800;
   color: #ffffff;
   text-align: center;
-  font-weight: bold;
 }
 
 @media (max-width: 995px) {
@@ -301,3 +313,4 @@ button:hover {
     margin-top: 15px;
   }
 }
+
