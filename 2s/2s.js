@@ -34,26 +34,110 @@ eyeicon.onclick = function () {
 const scriptURL = 'https://script.google.com/macros/s/AKfycbyI3HbZl8cKp2IFhUz1u_O6B5i6kCnVEf6N84ufjC5H41C7oS--KW3vwRkOoYyMWUBB7A/exec';
 const form = document.forms['form-2s-receh48'];
 const loading = document.getElementById('loading');
-const output = document.getElementById('output');
+const submitButton = form.querySelector('button[type="submit"]');
 
-// Tambahkan variabel untuk mengontrol status form
-let formIsOpen = false;  // Set ke 'false' untuk menutup form
+const restrictedMembers = ['Marsha Lenathea', 'Marsha', 'Gracia', 'Adeline Wijaya', 'Freya', 'Freya Jayawardana', 'Christy', 'Angelina Christy', 'Shania Gracia', 'Erine', 'Oline', 'Oline Manuel', 'Catherina Vallencia', 'Delynn', 'Michie', 'Michelle Alexandra']; // Daftar nama member yang dibatasi
 
 form.addEventListener('submit', e => {
   e.preventDefault();
 
-  form.reset();
+  // Ambil input pengguna dan bersihkan dari karakter yang tidak diinginkan
+  let memberName = document.getElementById('member').value.trim();
 
-  // Periksa apakah form sedang terbuka
-  if (!formIsOpen) {
+  // Hapus tanda kutip, karakter khusus, dan spasi ekstra
+  memberName = memberName.replace(/['"`~!@#$%^&*()_+={}\[\]:;<>?,./\\|]/g, '').toLowerCase();
+
+  // Periksa apakah nama member termasuk dalam daftar yang dibatasi (case insensitive)
+  const isRestricted = restrictedMembers.some(name => name.toLowerCase() === memberName);
+
+  if (isRestricted) {
     Swal.fire({
-      title: 'Mohon Maaf Joki 2S Sudah FULL SLOT!',
+      title: 'Slot Penuh!',
+      text: `Maaf, slot untuk ${memberName} sudah penuh.`,
       imageUrl: 'img/shani-maaf.gif',
       imageWidth: 150,
       confirmButtonText: 'OK'
     });
-    return;
+
+    return; // Hentikan pengiriman form
   }
+
+  submitButton.style.display = 'none'; 
+  loading.style.display = 'block'; 
+  output.style.display = 'none'; 
+
+  const nama = document.getElementById('nama').value.trim();
+
+  // 🔹 Konfirmasi dulu sebelum submit
+  Swal.fire({
+    title: 'Konfirmasi',
+    text: 'Pastikan anda sudah membaca seluruh aturan PO Joki nya 🙏',
+    icon: 'warning',
+    confirmButtonText: 'Saya Sudah',
+    allowOutsideClick: false,
+    allowEscapeKey: false,
+    customClass: {
+      popup: 'animate__animated animate__bounceIn',
+      confirmButton: 'animate__animated animate__pulse animate__infinite',
+    }
+
+  }).then((result) => {
+    if (result.isConfirmed) {
+  // Disable tombol dan sembunyikan
+  submitButton.disabled = true;
+  submitButton.style.display = 'none';
+
+  // Tampilkan loading
+  loading.style.display = 'block';
+  output.style.display = 'none';
+
+      // Kirim data ke Google Apps Script
+      fetch(scriptURL, { method: 'POST', body: new FormData(form) })
+  .then(response => {
+    loading.style.display = 'none'; 
+    output.style.display = 'block'; 
+    output.textContent = 'Data Sudah Terkirim 🙏'; 
+    form.reset();
+
+    Swal.fire({
+      title: 'Sukses!',
+      text: `Terimakasih Ka ${nama}, Data Sudah Terkirim, Cek Email Secara Berkala (Jika Tidak Muncul Bisa Cek Di Spam) 🙏`,
+      imageUrl: 'img/icel-ty.gif',
+      imageWidth: 150,
+      confirmButtonText: 'OK',
+      customClass: {
+        popup: 'animate__animated animate__fadeInDown'
+      }
+    }).then((result) => {
+      if (result.isConfirmed) {
+
+        location.reload();
+      } else if (result.dismiss === Swal.DismissReason.cancel || 
+             result.dismiss === Swal.DismissReason.backdrop || 
+             result.dismiss === Swal.DismissReason.esc) {
+    location.reload();
+  }
+    });
+  })
+        
+  .catch(error => {
+    loading.style.display = 'none'; 
+    output.style.display = 'block'; 
+    output.textContent = 'Terjadi kesalahan: ' + error.message; 
+
+    Swal.fire({
+      icon: 'error',
+      title: 'Error!',
+      text: 'Terjadi kesalahan saat mengirim data!',
+      confirmButtonText: 'OK',
+      customClass: {
+        popup: 'animate__animated animate__shakeX'
+      }
+    });
+    submitButton.style.display = 'block';
+  });
+    }
+  });
 });
 
 
@@ -84,3 +168,4 @@ inputs.forEach(input => {
   const fieldName = input.getAttribute('name') || input.id; 
   setCustomValidation(input, fieldName);
 });
+
