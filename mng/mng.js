@@ -37,7 +37,7 @@ const loading = document.getElementById('loading');
 const output = document.getElementById('output');
 const submitButton = form.querySelector('button[type="submit"]');
 
-/*const restrictedMembers = ['Marsha Lenathea', 'Marsha', 'Gracia', 'Adeline Wijaya', 'Freya', 'Freya Jayawardana', 'Christy', 'Angelina Christy', 'Shania Gracia', 'Erine', 'Oline', 'Oline Manuel', 'Catherina Vallencia', 'Delynn', 'Michie', 'Michelle Alexandra']; // Daftar nama member yang dibatasi
+const restrictedMembers = []; // Daftar nama member yang dibatasi
 
 form.addEventListener('submit', e => {
   e.preventDefault();
@@ -61,7 +61,7 @@ form.addEventListener('submit', e => {
     });
 
     return; // Hentikan pengiriman form
-  } */
+  } 
 
   submitButton.style.display = 'none'; 
   loading.style.display = 'block'; 
@@ -139,7 +139,7 @@ form.addEventListener('submit', e => {
   });
       }
         });
-           // });
+           });
 
 
 const inputs = [
@@ -169,3 +169,4 @@ inputs.forEach(input => {
   const fieldName = input.getAttribute('name') || input.id; 
   setCustomValidation(input, fieldName);
 });
+
